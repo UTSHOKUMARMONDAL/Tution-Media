@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Scholars Tuition Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0D1B2A;
+    --navy2:   #152336;
+    --gold:    #D4A843;
+    --gold2:   #F0C96B;
+    --cream:   #F7F3EC;
+    --text:    #1A1A2E;
+    --muted:   #6B7280;
+    --white:   #FFFFFF;
+    --green:   #25D366;
+    --blue-fb: #1877F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(212,168,67,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold2); }
+
+  /* ── HERO / COVER ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2f4a 50%, #0a1520 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 30%, rgba(212,168,67,0.08) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(212,168,67,0.06) 0%, transparent 50%);
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.8rem;
+    position: relative;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white);
+    position: relative;
+    margin-bottom: 0.3rem;
+  }
+  .hero-title .accent { color: var(--gold); }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1.6rem;
+    position: relative;
+  }
+  .hero-desc {
+    max-width: 560px;
+    font-size: 1rem; line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2.8rem;
+    position: relative;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    position: relative;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 0.4rem;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer; border: none;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,168,67,0.35); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.4);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; letter-spacing: 0.05em; }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 60px; height: 3px;
+    background: var(--gold);
+    margin: 1.2rem auto 0;
+    border-radius: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 1rem; color: var(--muted); max-width: 520px; line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: var(--white); }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 2rem;
+  }
+  .step-card {
+    background: var(--cream);
+    border-radius: 1rem;
+    padding: 2rem 1.6rem;
+    border: 1px solid rgba(212,168,67,0.2);
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,27,42,0.08); }
+  .step-icon {
+    font-size: 2.2rem; margin-bottom: 1rem;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .step-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── TUTOR LISTING ── */
+  #tutors { background: var(--cream); }
+  .role-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  @media (max-width: 640px) { .role-grid { grid-template-columns: 1fr; } }
+  .role-card {
+    border-radius: 1.2rem;
+    padding: 2.5rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+    position: relative; overflow: hidden;
+  }
+  .role-card.find { background: var(--navy); color: var(--white); }
+  .role-card.teach { background: var(--gold); color: var(--navy); }
+  .role-card-icon { font-size: 3rem; }
+  .role-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+  }
+  .role-card p { font-size: 0.95rem; line-height: 1.7; opacity: 0.85; }
+  .role-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .role-card ul li { font-size: 0.9rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .role-card ul li::before { content: "✓"; font-weight: 700; flex-shrink: 0; }
+  .role-card .btn { align-self: flex-start; }
+  .role-card.find .btn { background: var(--gold); color: var(--navy); }
+  .role-card.find .btn:hover { background: var(--gold2); }
+  .role-card.teach .btn { background: var(--navy); color: var(--white); }
+  .role-card.teach .btn:hover { background: var(--navy2); }
+
+  /* ── SUBJECTS ── */
+  #subjects { background: var(--white); }
+  .subjects-wrap { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .subject-tag {
+    background: var(--cream);
+    border: 1.5px solid rgba(13,27,42,0.12);
+    color: var(--navy);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.88rem; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .subject-tag:hover { background: var(--navy); color: var(--white); border-color: var(--navy); cursor: default; }
+  .subject-tag.gold { background: var(--gold); border-color: var(--gold); color: var(--navy); font-weight: 600; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-desc { color: rgba(255,255,255,0.6); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    padding: 2rem 1.8rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+  .contact-icon-wrap {
+    width: 52px; height: 52px; border-radius: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .ic-phone  { background: rgba(212,168,67,0.15); }
+  .ic-wa     { background: rgba(37,211,102,0.15); }
+  .ic-fb     { background: rgba(24,119,242,0.15); }
+  .contact-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-weight: 600; }
+  .contact-value { font-size: 1.05rem; font-weight: 600; color: var(--white); }
+  .contact-detail { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.88rem; font-weight: 600;
+    padding: 0.5rem 1.1rem; border-radius: 0.5rem;
+    text-decoration: none; margin-top: 0.2rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { opacity: 0.85; transform: translateY(-1px); }
+  .lk-call  { background: var(--gold); color: var(--navy); }
+  .lk-wa    { background: var(--green); color: var(--white); }
+  .lk-fb    { background: var(--blue-fb); color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080f17;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(212,168,67,0.15);
+  }
+  footer strong { color: var(--gold); }
+
+  /* ── SCROLL REVEAL via CSS ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RULES ── */
+  #rules { background: var(--cream); }
+  .rules-intro {
+    background: var(--navy);
+    border-radius: 1.2rem;
+    padding: 2rem 2.2rem;
+    margin-bottom: 2.5rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .rules-intro-icon { font-size: 2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .rules-intro p { color: rgba(255,255,255,0.8); font-size: 0.97rem; line-height: 1.75; }
+  .rules-intro strong { color: var(--gold); }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .rule-card {
+    background: var(--white);
+    border-radius: 1rem;
+    padding: 1.8rem;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .rule-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,27,42,0.1); }
+  .rule-card.red  { border-left-color: #E74C3C; }
+  .rule-card.green{ border-left-color: #27AE60; }
+  .rule-card.blue { border-left-color: #2980B9; }
+  .rule-card.gold { border-left-color: var(--gold); }
+
+  .rule-header {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+  .rule-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .rule-card.red  .rule-num { background: #E74C3C; color: #fff; }
+  .rule-card.green .rule-num { background: #27AE60; color: #fff; }
+  .rule-card.blue  .rule-num { background: #2980B9; color: #fff; }
+
+  .rule-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--navy);
+  }
+  .rule-body { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .rule-body strong { color: var(--text); }
+  .rule-highlight {
+    display: inline-block;
+    margin-top: 0.7rem;
+    background: var(--cream);
+    border-radius: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--navy);
+  }
+  .rule-card.red  .rule-highlight { background: #fdecea; color: #c0392b; }
+  .rule-card.green .rule-highlight { background: #eafaf1; color: #1e8449; }
+  .rule-card.blue  .rule-highlight { background: #eaf4fb; color: #1a5276; }
+
+  .rules-note {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2f4a 100%);
+    border-radius: 1rem;
+    padding: 1.8rem 2rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem; line-height: 1.8;
+    border: 1px solid rgba(212,168,67,0.2);
+  }
+  .rules-note strong { color: var(--gold2); }
+  .rules-note p + p { margin-top: 0.5rem; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.2rem; }
+    .hero-stats { gap: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Scholars <span>Tuition Media</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#tutors">Get Started</a></li>
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#rules">Tutor Rules</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO / COVER PAGE -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-badge">📚 Bangladesh's Trusted Tuition Network</div>
+  <h1 class="hero-title">Scholars<br><span class="accent">Tuition Media</span></h1>
+  <p class="hero-subtitle">Connecting Students & Tutors Across Bangladesh</p>
+  <p class="hero-desc">
+    Find the perfect home tutor for your child — or register yourself as a professional tutor and reach hundreds of students in your area. Quality education, made easy.
+  </p>
+  <div class="hero-cta">
+    <a href="#tutors" class="btn btn-gold">🎓 Find a Tutor</a>
+    <a href="#tutors" class="btn btn-outline">✏️ Become a Tutor</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Verified Tutors</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1,200+</div>
+      <div class="stat-label">Students Enrolled</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Subjects Covered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Free to Register</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">Simple Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <div class="gold-divider" style="margin:0 0 1rem;"></div>
+    <p class="section-desc">Whether you're a student searching for help or a tutor ready to teach — getting started takes just a few steps.</p>
+    <div class="steps-grid reveal">
+      <div class="step-card">
+        <div class="step-icon">📋</div>
+        <div class="step-title">Post Your Requirement</div>
+        <p class="step-text">Students or parents share their subject, class level, location, and preferred schedule via our contact channels.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🔍</div>
+        <div class="step-title">We Match You</div>
+        <p class="step-text">Our team reviews available tutors and finds the best match based on your area, subject, and budget.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🤝</div>
+        <div class="step-title">Confirm & Start</div>
+        <p class="step-text">Once both sides agree, the tutor begins classes at the student's home or a mutually decided location.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">⭐</div>
+        <div class="step-title">Track Progress</div>
+        <p class="step-text">Parents can stay updated and provide feedback. We ensure quality and accountability throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET STARTED CARDS -->
+<section id="tutors">
+  <div class="section-inner">
+    <div class="section-eyebrow">Get Started Today</div>
+    <h2 class="section-title">For Students & Tutors</h2>
+    <div class="gold-divider" style="margin:0 0 1rem;"></div>
+    <p class="section-desc">Two doors, one mission — better education for everyone.</p>
+    <div class="role-grid reveal">
+      <div class="role-card find">
+        <div class="role-card-icon">🎓</div>
+        <h3>Find a Tutor</h3>
+        <p>Looking for a qualified home tutor? Tell us your requirements and we'll connect you with a verified tutor in your area.</p>
+        <ul>
+          <li>Home tuition available</li>
+          <li>All classes from Class 1–HSC & beyond</li>
+          <li>Experienced, background-checked tutors</li>
+          <li>Flexible schedules & affordable rates</li>
+        </ul>
+        <a href="#contact" class="btn">📞 Contact Us Now</a>
+      </div>
+      <div class="role-card teach">
+        <div class="role-card-icon">✏️</div>
+        <h3>Become a Tutor</h3>
+        <p>Are you a student, graduate, or professional who loves to teach? Register with us and find students near you.</p>
+        <ul>
+          <li>Free tutor registration</li>
+          <li>Get student leads in your area</li>
+          <li>Set your own schedule & rates</li>
+          <li>Build your teaching reputation</li>
+        </ul>
+        <a href="#contact" class="btn">📝 Register as Tutor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+  <div class="section-inner">
+    <div class="section-eyebrow">Coverage</div>
+    <h2 class="section-title">Subjects We Cover</h2>
+    <div class="gold-divider" style="margin:0 0 1rem;"></div>
+    <p class="section-desc">From foundational school subjects to competitive university-level courses — our tutors cover them all.</p>
+    <div class="subjects-wrap reveal">
+      <span class="subject-tag gold">Mathematics</span>
+      <span class="subject-tag gold">Physics</span>
+      <span class="subject-tag gold">Chemistry</span>
+      <span class="subject-tag gold">Biology</span>
+      <span class="subject-tag">English (Grammar & Literature)</span>
+      <span class="subject-tag">Bangla</span>
+      <span class="subject-tag">ICT / Computer Science</span>
+      <span class="subject-tag">Higher Mathematics</span>
+      <span class="subject-tag">Accounting</span>
+      <span class="subject-tag">Economics</span>
+      <span class="subject-tag">Business Studies</span>
+      <span class="subject-tag">Geography</span>
+      <span class="subject-tag">History</span>
+      <span class="subject-tag">Civics</span>
+      <span class="subject-tag">Islam & Moral Education</span>
+      <span class="subject-tag">General Science</span>
+      <span class="subject-tag">Statistics</span>
+      <span class="subject-tag">University Admission Prep</span>
+      <span class="subject-tag">SSC / HSC Preparation</span>
+      <span class="subject-tag">IELTS / English Speaking</span>
+      <span class="subject-tag">Drawing & Arts</span>
+      <span class="subject-tag">Arabic</span>
+    </div>
+  </div>
+</section>
+
+<!-- TUTOR RULES -->
+<section id="rules">
+  <div class="section-inner">
+    <div class="section-eyebrow">Terms & Conditions</div>
+    <h2 class="section-title">Rules for Tutors</h2>
+    <div class="gold-divider" style="margin:0 0 1rem;"></div>
+    <p class="section-desc">Before registering as a tutor with Scholars Tuition Media, please read and agree to the following rules carefully.</p>
+
+    <div class="rules-intro reveal">
+      <div class="rules-intro-icon">📜</div>
+      <p>These rules are in place to ensure <strong>fairness, trust, and transparency</strong> between tutors, students, parents, and Scholars Tuition Media. By registering with us, you agree to follow all the terms listed below. Violation of these rules may result in removal from our platform.</p>
+    </div>
+
+    <div class="rules-grid reveal">
+
+      <!-- Rule 1 -->
+      <div class="rule-card gold">
+        <div class="rule-header">
+          <div class="rule-num">01</div>
+          <div class="rule-title">Media Service Charge — 50% of First Month</div>
+        </div>
+        <div class="rule-body">
+          Once you are successfully placed with a student through Scholars Tuition Media, you are required to pay <strong>50% of your first month's salary</strong> as a service charge to the media. This fee covers the cost of finding, verifying, and connecting you with the student.
+          <div class="rule-highlight">💰 Example: If monthly salary = ৳3,000 → Pay ৳1,500 to media</div>
+        </div>
+      </div>
+
+      <!-- Rule 2 -->
+      <div class="rule-card green">
+        <div class="rule-header">
+          <div class="rule-num">02</div>
+          <div class="rule-title">Refund if Student Cancels in First Month</div>
+        </div>
+        <div class="rule-body">
+          If the <strong>parent or guardian cancels the tuition within the first month</strong> for any reason not caused by the tutor (e.g. family situation, relocation, financial reasons), the media will <strong>refund the service charge</strong> paid by the tutor — either fully or partially based on how many days classes were held.
+          <div class="rule-highlight">✅ Refund processed within 7 working days</div>
+        </div>
+      </div>
+
+      <!-- Rule 3 -->
+      <div class="rule-card red">
+        <div class="rule-header">
+          <div class="rule-num">03</div>
+          <div class="rule-title">No Refund if Tutor Quits First Month</div>
+        </div>
+        <div class="rule-body">
+          If the tutor <strong>voluntarily quits or abandons the tuition</strong> within the first month without a valid reason, <strong>no refund</strong> will be issued. The media reserves the right to blacklist the tutor from future placements.
+          <div class="rule-highlight">❌ Service charge is non-refundable in this case</div>
+        </div>
+      </div>
+
+      <!-- Rule 4 -->
+      <div class="rule-card blue">
+        <div class="rule-header">
+          <div class="rule-num">04</div>
+          <div class="rule-title">Direct Dealing Without Media is Prohibited</div>
+        </div>
+        <div class="rule-body">
+          Tutors must <strong>not bypass the media</strong> to deal directly with students or parents found through our platform. If discovered, the tutor will be permanently removed from the media and may face legal notice. All initial arrangements must go through Scholars Tuition Media.
+          <div class="rule-highlight">⚠️ This is a strict zero-tolerance rule</div>
+        </div>
+      </div>
+
+      <!-- Rule 5 -->
+      <div class="rule-card gold">
+        <div class="rule-header">
+          <div class="rule-num">05</div>
+          <div class="rule-title">Provide Accurate Personal Information</div>
+        </div>
+        <div class="rule-body">
+          Tutors must submit <strong>accurate and honest information</strong> during registration — including their real name, educational qualifications, institution, subject expertise, and contact details. Providing false information will result in immediate removal from the platform.
+          <div class="rule-highlight">📋 NID / Student ID may be required for verification</div>
+        </div>
+      </div>
+
+      <!-- Rule 6 -->
+      <div class="rule-card green">
+        <div class="rule-header">
+          <div class="rule-num">06</div>
+          <div class="rule-title">Maintain Punctuality & Professionalism</div>
+        </div>
+        <div class="rule-body">
+          Tutors are expected to <strong>arrive on time, be respectful</strong> to students and families, and maintain a professional attitude at all times. Repeated complaints about behavior or irregular attendance may result in suspension from the media.
+          <div class="rule-highlight">🕐 Inform in advance if you must miss a class</div>
+        </div>
+      </div>
+
+      <!-- Rule 7 -->
+      <div class="rule-card blue">
+        <div class="rule-header">
+          <div class="rule-num">07</div>
+          <div class="rule-title">Salary Negotiation via Media Only</div>
+        </div>
+        <div class="rule-body">
+          The monthly salary rate must be <strong>agreed upon and finalized through the media</strong> before classes begin. Tutors should not independently demand extra fees from students or parents beyond the agreed amount without informing the media first.
+          <div class="rule-highlight">📞 Contact media for any salary change requests</div>
+        </div>
+      </div>
+
+      <!-- Rule 8 -->
+      <div class="rule-card red">
+        <div class="rule-header">
+          <div class="rule-num">08</div>
+          <div class="rule-title">Report Problems to Media Immediately</div>
+        </div>
+        <div class="rule-body">
+          If any issue arises — such as the student not paying salary, inappropriate behavior from the family, or safety concerns — the tutor must <strong>report it to the media immediately</strong>. Do not handle disputes alone. The media will mediate and take necessary action.
+          <div class="rule-highlight">🚨 We are always here to support our tutors</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rules-note reveal">
+      <p><strong>📌 Important Notice:</strong> By registering with Scholars Tuition Media and accepting a tuition placement, you automatically agree to all the rules listed above.</p>
+      <p><strong>⚖️ Dispute Resolution:</strong> Any dispute between tutor and student/family will be reviewed and decided by Scholars Tuition Media. Our decision will be considered final.</p>
+      <p><strong>📞 Questions?</strong> If you have any questions about these rules before registering, please contact us via WhatsApp or call us directly. We're happy to clarify.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--gold2);">Reach Us</div>
+    <h2 class="section-title">Contact & Connect</h2>
+    <div class="gold-divider" style="margin:0 0 1rem;"></div>
+    <p class="section-desc">Have a tuition requirement or want to register as a tutor? Reach us through any of the channels below — we respond fast!</p>
+
+    <div class="contact-grid reveal">
+
+      <!-- Phone -->
+      <div class="contact-card">
+        <div class="contact-icon-wrap ic-phone">📞</div>
+        <div>
+          <div class="contact-label">Phone / Call Us</div>
+          <div class="contact-value">+880 1865884889</div>
+          <div class="contact-detail">Available Sun–Sat, 9 AM – 12:30 AM</div>
+        </div>
+        <a href="tel:+8801865884889" class="contact-link lk-call">📞 Call Now</a>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="contact-card">
+        <div class="contact-icon-wrap ic-wa">💬</div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">+880 1865884889</div>
+          <div class="contact-detail">Message us anytime — quick replies guaranteed</div>
+        </div>
+        <a href="https://wa.me/8801865884889?text=Hello%20Scholars%20Tuition%20Media%2C%20I%20am%20interested%20in%20your%20service." target="_blank" class="contact-link lk-wa">💬 Message on WhatsApp</a>
+      </div>
+
+      <!-- Facebook -->
+      <div class="contact-card">
+        <div class="contact-icon-wrap ic-fb">📘</div>
+        <div>
+          <div class="contact-label">Facebook Group</div>
+          <div class="contact-value">Scholars Tuition Media</div>
+          <div class="contact-detail">Join our community — post requirements, find tutors</div>
+        </div>
+        <a href="https://www.facebook.com/groups/1734979687488601" target="_blank" class="contact-link lk-fb">📘 Join Facebook Group</a>
+      </div>
+
+    </div>
+
+    <!-- Info box -->
+    <div style="margin-top:2.5rem; background:rgba(212,168,67,0.1); border:1px solid rgba(212,168,67,0.3); border-radius:1rem; padding:1.8rem 2rem;">
+      <p style="color:var(--gold2); font-weight:600; margin-bottom:0.5rem;">📍 Service Area</p>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.95rem; line-height:1.7;">Currently serving <strong style="color:var(--white);">Allmost all the big cities in Bangladesh </strong>. Expanding soon to other districts. Contact us even if your area isn't listed — we'll try our best to help!</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Scholars Tuition Media</strong>. All rights reserved.</p>
+  <p style="margin-top:0.4rem;">Connecting learners with educators across Bangladesh 🇧🇩</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
